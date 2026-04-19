@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
     margin: 0;
     padding: 0;
-    background-color: #0952c0;
     text-align: center;
 }
 
@@ -12,35 +12,47 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 h1 {
+    text-align: center;
     color: #10037e;
 }
 
 p {
+    text-align: center;
     color: #555;
     font-size: 18px;
 }
 
-input[type="text"], select {
+label {
+    font-weight: bold;
+}
+
+input, select {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
 }   
 
-button {
+input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+button, input[type="submit"] {
     background-color: #10037e;
     color: white;
     padding: 10px 20px;
     border: none;
+    width: 100%;
     border-radius: 4px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0b025e;
+button:hover, input[type="submit"]:hover {
+    background-color: #00c6ff;
 }
