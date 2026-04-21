@@ -1,25 +1,33 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+    background: linear-gradient(to right, #0a45b3, #0d83f1);
     margin: 0;
     padding: 0;
-    text-align: center;
+    /* Centrage de la page d'accueil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
     max-width: 600px;
     margin: 50px auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
+/* Styles pour les titres */
 h1 {
     text-align: center;
-    color: #10037e;
+    color: #0c55df;
+    font-size: 32px;
+    
 }
 
+/*Styles pour les paragraphes */
 p {
     text-align: center;
     color: #555;
@@ -30,7 +38,8 @@ label {
     font-weight: bold;
 }
 
-input, select {
+/* Styles pour les champs de formulaire */
+input, select, textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0 20px 0;
@@ -43,8 +52,9 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
+/* Styles pour les boutons */
 button, input[type="submit"] {
-    background-color: #10037e;
+    background-color: #0c6ce9;
     color: white;
     padding: 10px 20px;
     border: none;
