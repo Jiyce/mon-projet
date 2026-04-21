@@ -251,8 +251,9 @@ class MonSiteWeb(object):
         conn.close()
         
         return f"""
-         <h1>Merci pour votre participation !</h1>
-         <a href="/">Retour à l'accueil</a>
+         <h1>Merci pour votre participation 😁️!</h1>
+         <a href="/stats">Voir les statistiques des participants📊️</a><br><br>
+         <a href="/">Retour à l'accueil🎲️</a>
          """
     
     @cherrypy.expose
