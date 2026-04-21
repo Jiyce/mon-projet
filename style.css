@@ -1,3 +1,6 @@
+body{
+    background: red !important;
+}
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #0a45b3, #0d83f1);
