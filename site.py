@@ -16,62 +16,21 @@ class MonSiteWeb(object):
         <!DOCTYPE html>
         <html lang="fr">
         <head>
-        <title>ACCUEIL</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background: linear-gradient(to right, #4facfe, #00f2fe);
-                margin: 0;
-                padding: 0;
-                text-align: center;
-            }
-
-            .container {
-                max-width: 600px;
-                margin: 50px auto;
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            }
-
-            h1 {
-                text-align: center;
-                color: #10037e;
-            }
-
-            p {
-                text-align: center;
-                color: #555;
-            }
+        <title>APPLICATION</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
             
-             button {
-            background: #4facfe;
-            border: none;
-            padding: 12px 25px;
-            color: white;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            }
-            
-            button:hover {
-            background: #007bff;
-            }
-
-        </style>
         </head>
         
         <body>
             <div class="container">
                 <h1><i>SANTE SEXUELLE ET REPRODUCTIVE</i></h1>
                 <p> 
-                 Cette application a pour but d'évaluer les connaissances en matière de  santé sexuelle et reproductive chez les jeunes. Les données collectées sont anonymes et serviront à des fins éducatives.
+                 Cette application a pour but d'évaluer les connaissances en matière de  santé sexuelle et reproductive chez les jeunes.
+                 Les données collectées sont anonymes et serviront à des fins éducatives.
                 </p>
         
                 <a href="questionnaire">
-                    <button>Commencer le questionnaire</button>
+                    <button>Commencer le questionnaire 👈️ </button>
                 </a>
             </div>
         </body>
@@ -85,74 +44,14 @@ class MonSiteWeb(object):
         return '''
         <html>
         <head>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background: linear-gradient(to right, #4facfe, #00f2fe);
-                margin: 0;
-                padding: 0;
-                text-align: center;
-            }
-
-            .container {
-                max-width: 600px;
-                margin: 50px auto;
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            }
-
-            h1 {
-                text-align: center;
-                color: #10037e;
-                
-            }
-
-            p {
-                text-align: center;
-                color: #555;
-                font-size: 18px;
-            }
-
-            label {
-                font-weight: bold;
-            }
-
-            input, select {
-                width: 100%;
-                padding: 10px;
-                margin: 10px 0 20px 0;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }   
-
-            input[type="radio"] {
-                width: auto;
-                margin-right: 10px;
-            }
-
-            button, input[type="submit"] {
-                background-color: #10037e;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                width: 100%;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            button:hover, input[type="submit"]:hover {
-                background-color: #00c6ff;
-            }
-            
-        </style>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+              
         </head>
         
         <body>
         <div class="container">
         
-        <h1><i>Questionnaire de santé sexuelle et reproductive</i></h1>
+        <h1><i>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</i></h1>
         <p>Veuillez répondre aux questions suivantes :</p>
         
         <form method="post" action="submit">
@@ -233,8 +132,28 @@ class MonSiteWeb(object):
         </li>
         
         <li>
+        <label>Quels sont les risques associés à une activité sexuelle non protégée ?</label>
+            <textarea name="risques" rows="4" cols="50" placeholder="Veuillez décrire les risques..." required></textarea><br><br>
+        </li>
+        
+        <li>
+        <label>Selon vous qui sont les plus exposées au phénomène de la sexualité précoce ? Justifiez votre réponse.</label>
+            <textarea name="sexualite_precoce" rows="4" cols="50" placeholder="Veuillez décrire..." required></textarea><br><br>
+        </li>
+        
+        <li>
+        <label>Quels sont les facteurs qui peuvent influencer les comportements sexuels à risque chez les jeunes ?</label>
+            <textarea name="facteurs" rows="4" cols="50" placeholder="Veuillez décrire les facteurs..." required></textarea><br><br>
+        </li>
+        
+        <li>
+        <label>Quels sont les moyens de prévention que vous connaissez pour éviter les infections sexuellement transmissibles et les grossesses non désirées ?</label>
+            <textarea name="prevention" rows="4" cols="50" placeholder="Veuillez décrire les moyens de prévention..." required></textarea><br><br>
+        </li>
+        
+        <li>
         <label>Quelles sont les différentes maladies sexuellement transmissibles (mst) que vous connaissez ?</label>
-            <input type="text" name="mst" required><br><br>
+            <textarea name="mst" rows="4" cols="50" placeholder="Veuillez lister les maladies..." required></textarea><br><br>
         </li>
         
         <li>
@@ -246,6 +165,20 @@ class MonSiteWeb(object):
         </li>
         
         <li>
+        <label>A quelle fréquence consultez-vous un professionnel de santé ?</label>
+            <select name="frequence_sante" required>
+                <option value="Jamais">Jamais</option>
+                <option value="Rarement">Rarement</option>
+                <option value="Régulièrement">Régulièrement</option>
+            </select><br><br>
+        </li>
+        
+        <li>
+        <label>Quelles difficultés rencontrez-vous pour accéder aux services de santé  ?</label>
+            <textarea name="difficultes" rows="4" cols="50" placeholder="Veuillez décrire les difficultés..." required></textarea><br><br>
+        </li>
+
+        <li>
         <label>Utilisez-vous toujours une protection lors de vos rapports sexuels ?</label>
             <input type="radio" id="oui" name="protection" value="Oui" required>
             <label for="oui">Oui</label>
@@ -254,7 +187,7 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>Pensez-vous que l'éducation sexuelle est suffisante ?</label>
+        <label>Pensez-vous que l'éducation sexuelle est suffisante pour les jeunes ?</label>
             <input type="radio" id="oui" name="education" value="Oui" required>
             <label for="oui">Oui</label>
             <input type="radio" id="non" name="education" value="Non" required>
@@ -264,7 +197,7 @@ class MonSiteWeb(object):
         
         <li>
          <label>Comment amélioreriez-vous l'accès à l'éducation sexuelle et aux services de santé reproductive pour les jeunes ?</label>
-        <input type="text" name="amelioration" required><br><br>
+            <textarea name="amelioration" rows="4" cols="50" placeholder="Vos suggestions..." required></textarea><br><br>
         </li>
         </ol>
             
@@ -279,14 +212,34 @@ class MonSiteWeb(object):
     
     @cherrypy.expose
     def submit(self,age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, partenaires,
-                   age_premier_rapport, acces_sante, protection, education):
+                   age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante):
         
         
         conn = self.connexion_db()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO reponses (age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, partenaires, age_premier_rapport, acces_sante, protection, education) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+        
+        cursor.execute("""CREATE TABLE IF NOT EXISTS reponses (
+                       id SERIAL PRIMARY KEY,
+                       age VARCHAR(20),
+                       sexe VARCHAR(20),
+                       sensibilisation VARCHAR(10),
+                       dernier_rapport VARCHAR(10),
+                       contraception VARCHAR(20),
+                       mst TEXT,
+                       amelioration TEXT,
+                       ist VARCHAR(10),
+                       preservatif VARCHAR(10), 
+                       partenaires VARCHAR(20),
+                        age_premier_rapport INTEGER,
+                         acces_sante VARCHAR(10),
+                        protection VARCHAR(10),
+                        education VARCHAR(10),
+                        difficultes TEXT,
+                        frequence_sante VARCHAR(20)
+                       )""")
+        cursor.execute("""INSERT INTO reponses (age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, partenaires, age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
                        (age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, 
-                        partenaires, age_premier_rapport, acces_sante, protection, education))
+                        partenaires, age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante))
         conn.commit()
         conn.close()
         
@@ -299,29 +252,59 @@ class MonSiteWeb(object):
     def stats(self):
         conn = self.connexion_db()
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM  reponses")
-        total, moyenne = cursor.fetchone()[0]
         
+        #Nombre total de participants
+        cursor.execute("SELECT COUNT(*) FROM  reponses")
+        total = cursor.fetchone()[0]
+        
+        #Repartition par sexe
         cursor.execute("""
                        SELECT sexe,COUNT(*) 
                        FROM reponses
                        GROUP BY sexe
                           """)
         repartition_sexe = cursor.fetchall()
+        
         conn.close()
         
         html = f"""
-        <h1>Statistiques des participants</h1>
-        <p><strong>Nombre total de participants : </strong> {total}</p>
-        <p><strong>Score moyen :</strong> {moyenne:.2f}/3</p>
+        <html>
+        <head>
+        </head>
         
-            <a href="/">Retour à l'accueil</a>
-        """
+        <body>
+        <div class="container">
+            <h1>Statistiques des participants</h1>
+        
+            <p><strong>Total de participants : </strong> {total}</p>
+            
+            <h2><i>Repartition par sexe :</i></h2>
+            <ul>
+            """
+            
+        for sexe, count in repartition_sexe:
+                pourcentage = (count / total) * 100 if total > 0 else 0
+                html += f"<li>{sexe} : {count} ({pourcentage:.2f}%)</li>"
+        html += """
+            </ul>
+             <a href="/">Retour à l'accueil</a>
+        </div>
+        </body>
+        </html>
+            """
+        
+            
         return html
      
 if __name__ == '__main__':
+    conf = {
+        '/static': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': os.path.join(os.path.dirname(__file__), 'static')
+        }
+    }
     cherrypy.config.update({'server.socket_host': '0.0.0.0',
                             'server.socket_port': int(os.environ.get('PORT', 8081))
                             })
-    cherrypy.quickstart(MonSiteWeb(), config="tutoriel.conf")
+    cherrypy.quickstart(MonSiteWeb(), '/', conf)
     
