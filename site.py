@@ -68,10 +68,10 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>Sexe : </label>
+        <label>Sexe 🚻️: </label>
             <select name="sexe" required>
-                <option value=" Homme">Homme</option>
-                <option value="Femme">Femme</option>
+                <option value=" Homme">Homme♂️</option>
+                <option value="Femme">Femme♀️</option>
             </select><br><br>
         </li>
         
@@ -211,8 +211,9 @@ class MonSiteWeb(object):
     # Traitement des données du formulaire
     
     @cherrypy.expose
-    def submit(self,age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, partenaires,
-                   age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante):
+    def submit(self,age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist,
+               preservatif, partenaires, prevention, sexualite_precoce, facteurs, risques,
+                 age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante):
         
         
         conn = self.connexion_db()
@@ -228,6 +229,10 @@ class MonSiteWeb(object):
                        mst TEXT,
                        amelioration TEXT,
                        ist VARCHAR(10),
+                       prevention TEXT,
+                       sexualite_precoce TEXT,
+                       facteurs TEXT,
+                       risques TEXT,
                        preservatif VARCHAR(10), 
                        partenaires VARCHAR(20),
                         age_premier_rapport INTEGER,
@@ -237,9 +242,11 @@ class MonSiteWeb(object):
                         difficultes TEXT,
                         frequence_sante VARCHAR(20)
                        )""")
-        cursor.execute("""INSERT INTO reponses (age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, partenaires, age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+        cursor.execute("""INSERT INTO reponses (age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, partenaires, 
+                       age_premier_rapport, acces_sante, protection, education, difficultes, 
+                       frequence_sante, prevention, sexualite_precoce, facteurs, risques) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
                        (age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist, preservatif, 
-                        partenaires, age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante))
+                        partenaires, age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante, prevention, sexualite_precoce, facteurs, risques))
         conn.commit()
         conn.close()
         
