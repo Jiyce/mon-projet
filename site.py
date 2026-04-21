@@ -17,7 +17,7 @@ class MonSiteWeb(object):
         <html lang="fr">
         <head>
         <title>APPLICATION</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
             
         </head>
         
@@ -44,7 +44,7 @@ class MonSiteWeb(object):
         return '''
         <html>
         <head>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
               
         </head>
         
