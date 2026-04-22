@@ -221,6 +221,38 @@ class MonSiteWeb(object):
                 <option value="5+">5 et plus</option>
             </select><br><br>
         </li>
+
+        <li>
+        <label>Quelle méthode de contraception utilisez-vous ?</label>
+            <select name="contraception" required>
+                <option value="Aucune">Aucune</option>
+                <option value="Préservatif">Préservatif</option>
+                <option value="Pilule">Pilule</option>
+                <option value="Stérilet">Stérilet</option>
+                <option value="Autre">Autre</option>
+            </select><br><br>
+        </li>
+        
+        <li>
+        <label>Avez-vous déjà été testé pour les infections sexuellement transmissibles (ist) ?</label>
+        <input type="radio" id="oui" name="ist" value="Oui" required>
+        <label for="oui">Oui</label>
+        <input type="radio" id="non" name="ist" value="Non" required>
+        <label for="non">Non</label><br><br> 
+        </li>
+        
+        <li>
+        <label>Le préservatif est-il efficace pour prévenir les grossesses et les ist ?</label>
+        <input type="radio" id="oui" name="preservatif" value="Oui" required>
+        <label for="oui">Oui</label><br>
+        <input type="radio" id="non" name="preservatif" value="Non" required>
+        <label for="non">Non</label><br><br>
+        </li>
+        
+        <li>
+        <label>Quels sont les risques associés à une activité sexuelle non protégée ?</label>
+            <textarea name="risques" rows="4" cols="50" placeholder="Veuillez décrire les risques..." required></textarea><br><br>
+        </li>
         </ol>
         
         <input type= 'submit' value='Suivant'>
@@ -310,38 +342,6 @@ class MonSiteWeb(object):
         {hidden_inputs}
         
         <ol>
-        <li>
-        <label>Quelle méthode de contraception utilisez-vous ?</label>
-            <select name="contraception" required>
-                <option value="Aucune">Aucune</option>
-                <option value="Préservatif">Préservatif</option>
-                <option value="Pilule">Pilule</option>
-                <option value="Stérilet">Stérilet</option>
-                <option value="Autre">Autre</option>
-            </select><br><br>
-        </li>
-        
-        <li>
-        <label>Avez-vous déjà été testé pour les infections sexuellement transmissibles (ist) ?</label>
-        <input type="radio" id="oui" name="ist" value="Oui" required>
-        <label for="oui">Oui</label>
-        <input type="radio" id="non" name="ist" value="Non" required>
-        <label for="non">Non</label><br><br> 
-        </li>
-        
-        <li>
-        <label>Le préservatif est-il efficace pour prévenir les grossesses et les ist ?</label>
-        <input type="radio" id="oui" name="preservatif" value="Oui" required>
-        <label for="oui">Oui</label><br>
-        <input type="radio" id="non" name="preservatif" value="Non" required>
-        <label for="non">Non</label><br><br>
-        </li>
-        
-        <li>
-        <label>Quels sont les risques associés à une activité sexuelle non protégée ?</label>
-            <textarea name="risques" rows="4" cols="50" placeholder="Veuillez décrire les risques..." required></textarea><br><br>
-        </li>
-        
         <li>
         <label>Selon vous qui sont les plus exposées au phénomène de la sexualité précoce ? Justifiez votre réponse.</label>
             <textarea name="sexualite_precoce" rows="4" cols="50" placeholder="Veuillez décrire..." required></textarea><br><br>
