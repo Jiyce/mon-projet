@@ -46,6 +46,19 @@ class MonSiteWeb(object):
                 font-size: 32px;
                 
             }
+            a {
+                    display: inline-block;
+                    margin-top: 20px;
+                    text-decoration: none;
+                    background: #10037e;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                }
+
+                a:hover {
+                    background: #00c6ff;
+                }
 
             /*Styles pour les paragraphes */
             p {
@@ -59,12 +72,12 @@ class MonSiteWeb(object):
         
         <body>
             <div class="container">
-                <h1><i>SANTE SEXUELLE ET REPRODUCTIVE</i></h1>
-                <p> 
+                <h1><i><b>SANTE SEXUELLE ET REPRODUCTIVE</b></i></h1>
+                <p><strong>
                  Cette application a pour but d'évaluer les connaissances, les pratiques et les obstacles à l'accès
                   au soins en santé sexuelle et reproductive chez les jeunes afin d'orienter une campagne de prévention
                   locale. Les données collectées sont anonymes et serviront à des fins éducatives.
-                </p>
+                </strong></p>
         
                 <a href="questionnaire">
                     <button>Commencer le questionnaire 👈️ </button>
@@ -157,7 +170,7 @@ class MonSiteWeb(object):
         <body>
         <div class="container">
         
-        <h1><i>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</i></h1>
+        <h1><i><strong>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</strong></i></h1>
         <p>Veuillez répondre aux questions suivantes :</p>
         
         <form method="post" action="submit">
