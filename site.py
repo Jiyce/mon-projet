@@ -44,26 +44,27 @@ class MonSiteWeb(object):
                 text-align: center;
                 color: #0c55df;
                 font-size: 32px;
+                margin-bottom: 20px;
                 
             }
             a {
-                    display: inline-block;
-                    margin-top: 20px;
-                    text-decoration: none;
-                    background: #10037e;
-                    color: white;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                }
-
-                a:hover {
-                    background: #00c6ff;
-                }
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            button {
+                background-color: #0c6ce9;
+                font-size: 18px;
+                padding: 10px 20px;
+                border-radius: 6px;
+                cursor: pointer;
 
             /*Styles pour les paragraphes */
             p {
                 text-align: center;
-                color: #555;
+                color: #444;
+                line-height: 1.6;
                 font-size: 18px;
             }
         </style>
@@ -90,7 +91,7 @@ class MonSiteWeb(object):
         # Questionnaire de santé sexuelle et reproductive  
          
     @cherrypy.expose
-    def questionnaire(self):
+    def questionnaire1(self):
         return '''
         <html>
         <head>
@@ -170,9 +171,9 @@ class MonSiteWeb(object):
         <body>
         <div class="container">
         
-        <h1><i><strong>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</strong></i></h1>
+        <h1><i>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</i></h1>
         <p>Veuillez répondre aux questions suivantes :</p>
-        
+        <h2><i>Page 1 du questionnaire</i></h2>
         <form method="post" action="submit">
         
         <ol>
@@ -194,7 +195,7 @@ class MonSiteWeb(object):
             </select><br><br>
         </li>
         
-        </li>    
+        <li>    
         <label>Avez-vous déjà participez à une campagne de sensibilisation sur la santé sexuelle et reproductive ?</label>
         <input type="radio" id="oui" name="sensibilisation" value="Oui" >Oui
         <input type="radio" id="non" name="sensibilisation" value="Non" >Non<br><br>
@@ -223,6 +224,95 @@ class MonSiteWeb(object):
             </select><br><br>
         </li>
         
+        <input type= 'submit' value='Suivant'>
+        </form>
+        </body>
+        </html>
+        '''
+        
+    @cherrypy.expose
+    def questionnaire2(self, **data):
+            hidden_inputs = ''.join([f'<input type="hidden" name="{key}" value="{value}">' for key, value in data.items()])
+            return '''
+        <html>
+        <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(to right, #0a45b3, #0d83f1);
+                margin: 0;
+                padding: 0;
+                /* Centrage de la page d'accueil */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+
+            /* Styles pour les titres */
+            h1 {
+                text-align: center;
+                color: #0c55df;
+                font-size: 32px;
+                
+            }
+
+            /*Styles pour les paragraphes */
+            p {
+                text-align: center;
+                color: #555;
+                font-size: 18px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            /* Styles pour les champs de formulaire */
+            input, select, textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0 20px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }   
+
+            input[type="radio"] {
+                width: auto;
+                margin-right: 10px;
+            }
+
+            /* Styles pour les boutons */
+            button, input[type="submit"] {
+                background-color: #0c6ce9;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                width: 100%;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            button:hover, input[type="submit"]:hover {
+                background-color: #00c6ff;
+            }
+        </style>
+        
+        </head>
+        <body>
+        <div class="container">
+        <h2> Page 2 du questionnaire</h2>
+        <form method="post" action="submit">
+        {hidden_inputs}
         <li>
         <label>Quelle méthode de contraception utilisez-vous ?</label>
             <select name="contraception" required>
@@ -470,14 +560,14 @@ class MonSiteWeb(object):
      
 if __name__ == '__main__':
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    conf = {
+
+    cherrypy.config.update({'server.socket_host': '0.0.0.0',
+                            'server.socket_port': int(os.environ.get('PORT', 8081))
+                            })
+    cherrypy.quickstart(MonSiteWeb(), '/', config={
         '/static': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': os.path.join(current_dir, 'static')
         }
-    }
-    cherrypy.config.update({'server.socket_host': '0.0.0.0',
-                            'server.socket_port': int(os.environ.get('PORT', 8081))
-                            })
-    cherrypy.quickstart(MonSiteWeb(), '/', conf)
+    })
     
