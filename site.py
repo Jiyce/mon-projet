@@ -17,7 +17,43 @@ class MonSiteWeb(object):
         <html lang="fr">
         <head>
         <title>APPLICATION</title>
-        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(to right, #0a45b3, #0d83f1);
+                margin: 0;
+                padding: 0;
+                /* Centrage de la page d'accueil */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+
+            /* Styles pour les titres */
+            h1 {
+                text-align: center;
+                color: #0c55df;
+                font-size: 32px;
+                
+            }
+
+            /*Styles pour les paragraphes */
+            p {
+                text-align: center;
+                color: #555;
+                font-size: 18px;
+            }
+        </style>
             
         </head>
         
@@ -25,8 +61,9 @@ class MonSiteWeb(object):
             <div class="container">
                 <h1><i>SANTE SEXUELLE ET REPRODUCTIVE</i></h1>
                 <p> 
-                 Cette application a pour but d'évaluer les connaissances en matière de  santé sexuelle et reproductive chez les jeunes.
-                 Les données collectées sont anonymes et serviront à des fins éducatives.
+                 Cette application a pour but d'évaluer les connaissances, les pratiques et les obstacles à l'accès
+                  au soins en santé sexuelle et reproductive chez les jeunes afin d'orienter une campagne de prévention
+                  locale. Les données collectées sont anonymes et serviront à des fins éducatives.
                 </p>
         
                 <a href="questionnaire">
@@ -44,8 +81,77 @@ class MonSiteWeb(object):
         return '''
         <html>
         <head>
-        <link rel="stylesheet" type="text/css" href="/static/style.css">
-              
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(to right, #0a45b3, #0d83f1);
+                margin: 0;
+                padding: 0;
+                /* Centrage de la page d'accueil */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+
+            /* Styles pour les titres */
+            h1 {
+                text-align: center;
+                color: #0c55df;
+                font-size: 32px;
+                
+            }
+
+            /*Styles pour les paragraphes */
+            p {
+                text-align: center;
+                color: #555;
+                font-size: 18px;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            /* Styles pour les champs de formulaire */
+            input, select, textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0 20px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }   
+
+            input[type="radio"] {
+                width: auto;
+                margin-right: 10px;
+            }
+
+            /* Styles pour les boutons */
+            button, input[type="submit"] {
+                background-color: #0c6ce9;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                width: 100%;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            button:hover, input[type="submit"]:hover {
+                background-color: #00c6ff;
+            }
+        </style>
+                        
         </head>
         
         <body>
@@ -278,6 +384,51 @@ class MonSiteWeb(object):
         html = f"""
         <html>
         <head>
+            <style>
+                body {{
+                    font-family: Arial;
+                    background: linear-gradient(to right, #4facfe, #00f2fe);
+                    text-align: center;
+                    padding: 50px;
+                }}
+
+                .container {{
+                    background: white;
+                    padding: 30px;
+                    border-radius: 10px;
+                    width: 50%;
+                    margin: auto;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                }}
+
+                h1 {{
+                    color: #10037e;
+                }}
+
+                ul {{
+                    list-style: none;
+                    padding: 0;
+                }}
+
+                li {{
+                    font-size: 18px;
+                    margin: 10px 0;
+                }}
+
+                a {{
+                    display: inline-block;
+                    margin-top: 20px;
+                    text-decoration: none;
+                    background: #10037e;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                }}
+
+                a:hover {{
+                    background: #00c6ff;
+                }}
+            </style>
         </head>
         
         <body>
@@ -305,10 +456,11 @@ class MonSiteWeb(object):
         return html
      
 if __name__ == '__main__':
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     conf = {
         '/static': {
             'tools.staticdir.on': True,
-            'tools.staticdir.dir': os.path.join(os.path.dirname(__file__), 'static')
+            'tools.staticdir.dir': os.path.join(current_dir, 'static')
         }
     }
     cherrypy.config.update({'server.socket_host': '0.0.0.0',
