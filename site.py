@@ -80,7 +80,7 @@ class MonSiteWeb(object):
                   locale. Les données collectées sont anonymes et serviront à des fins éducatives.
                 </strong></p>
         
-                <a href="questionnaire">
+                <a href="questionnaire1">
                     <button>Commencer le questionnaire 👈️ </button>
                 </a>
             </div>
@@ -173,8 +173,9 @@ class MonSiteWeb(object):
         
         <h1><i>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</i></h1>
         <p>Veuillez répondre aux questions suivantes :</p>
+        
+        <form method="post" action="questionnaire2">
         <h2><i>Page 1 du questionnaire</i></h2>
-        <form method="post" action="submit">
         
         <ol>
         <li>
@@ -232,8 +233,8 @@ class MonSiteWeb(object):
         
     @cherrypy.expose
     def questionnaire2(self, **data):
-            hidden_inputs = ''.join([f'<input type="hidden" name="{key}" value="{value}">' for key, value in data.items()])
-            return '''
+        hidden_inputs = ''.join([f'<input type="hidden" name="{key}" value="{value}">' for key, value in data.items()])
+        return '''
         <html>
         <head>
         <style>
@@ -311,8 +312,10 @@ class MonSiteWeb(object):
         <body>
         <div class="container">
         <h2> Page 2 du questionnaire</h2>
+        
         <form method="post" action="submit">
         {hidden_inputs}
+        
         <li>
         <label>Quelle méthode de contraception utilisez-vous ?</label>
             <select name="contraception" required>
