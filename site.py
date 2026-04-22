@@ -27,7 +27,6 @@ class MonSiteWeb(object):
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
             }
 
             .container {
@@ -59,6 +58,7 @@ class MonSiteWeb(object):
                 padding: 10px 20px;
                 border-radius: 6px;
                 cursor: pointer;
+            }
 
             /*Styles pour les paragraphes */
             p {
@@ -80,7 +80,7 @@ class MonSiteWeb(object):
                   locale. Les données collectées sont anonymes et serviront à des fins éducatives.
                 </strong></p>
         
-                <a href="questionnaire1">
+                <a href="/questionnaire1">
                     <button>Commencer le questionnaire 👈️ </button>
                 </a>
             </div>
@@ -101,11 +101,6 @@ class MonSiteWeb(object):
                 background: linear-gradient(to right, #0a45b3, #0d83f1);
                 margin: 0;
                 padding: 0;
-                /* Centrage de la page d'accueil */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
             }
 
             .container {
@@ -122,6 +117,7 @@ class MonSiteWeb(object):
                 text-align: center;
                 color: #0c55df;
                 font-size: 32px;
+                margin-bottom: 20px;
                 
             }
 
@@ -174,7 +170,8 @@ class MonSiteWeb(object):
         <h1><i>QUESTIONNAIRE DE SANTÉ SEXUELLE ET REPRODUCTIVE</i></h1>
         <p>Veuillez répondre aux questions suivantes :</p>
         
-        <form method="post" action="questionnaire2">
+        <form method="post" action="/questionnaire2">
+        
         <h2><i>Page 1 du questionnaire</i></h2>
         
         <ol>
@@ -224,6 +221,7 @@ class MonSiteWeb(object):
                 <option value="5+">5 et plus</option>
             </select><br><br>
         </li>
+        </ol>
         
         <input type= 'submit' value='Suivant'>
         </form>
@@ -234,66 +232,61 @@ class MonSiteWeb(object):
     @cherrypy.expose
     def questionnaire2(self, **data):
         hidden_inputs = ''.join([f'<input type="hidden" name="{key}" value="{value}">' for key, value in data.items()])
-        return '''
+        return f'''
         <html>
         <head>
         <style>
-            body {
+            body {{
                 font-family: Arial, sans-serif;
                 background: linear-gradient(to right, #0a45b3, #0d83f1);
                 margin: 0;
-                padding: 0;
-                /* Centrage de la page d'accueil */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-            }
+                padding: 20px;
+            }}
 
-            .container {
+            .container {{
                 max-width: 600px;
                 margin: 50px auto;
                 background-color: #fff;
                 padding: 40px;
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            }
+            }}
 
             /* Styles pour les titres */
-            h1 {
+            h1 {{
                 text-align: center;
                 color: #0c55df;
                 font-size: 32px;
                 
-            }
+            }}
 
             /*Styles pour les paragraphes */
-            p {
+            p {{
                 text-align: center;
                 color: #555;
                 font-size: 18px;
-            }
+            }}
 
-            label {
+            label {{
                 font-weight: bold;
-            }
+            }}
 
             /* Styles pour les champs de formulaire */
-            input, select, textarea {
+            input, select, textarea {{
                 width: 100%;
                 padding: 10px;
                 margin: 10px 0 20px 0;
                 border: 1px solid #ccc;
                 border-radius: 4px;
-            }   
+            }}  
 
-            input[type="radio"] {
+            input[type="radio"] {{
                 width: auto;
                 margin-right: 10px;
-            }
+            }}
 
             /* Styles pour les boutons */
-            button, input[type="submit"] {
+            button, input[type="submit"] {{
                 background-color: #0c6ce9;
                 color: white;
                 padding: 10px 20px;
@@ -301,11 +294,11 @@ class MonSiteWeb(object):
                 width: 100%;
                 border-radius: 4px;
                 cursor: pointer;
-            }
+            }}
 
-            button:hover, input[type="submit"]:hover {
+            button:hover, input[type="submit"]:hover {{
                 background-color: #00c6ff;
-            }
+            }}
         </style>
         
         </head>
@@ -313,9 +306,10 @@ class MonSiteWeb(object):
         <div class="container">
         <h2> Page 2 du questionnaire</h2>
         
-        <form method="post" action="submit">
+        <form method="post" action="/submit">
         {hidden_inputs}
         
+        <ol>
         <li>
         <label>Quelle méthode de contraception utilisez-vous ?</label>
             <select name="contraception" required>
@@ -419,14 +413,36 @@ class MonSiteWeb(object):
         </div>
         </body>
         </html>
-        '''
+    '''
     # Traitement des données du formulaire
     
     @cherrypy.expose
-    def submit(self,age, sexe, sensibilisation,dernier_rapport,contraception,mst, amelioration, ist,
-               preservatif, partenaires, prevention, sexualite_precoce, facteurs, risques,
-                 age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante):
+    def submit(self, **data):
+        age = data.get('age')
+        sexe = data.get('sexe')
+        sensibilisation = data.get('sensibilisation')
+        dernier_rapport = data.get('dernier_rapport')
+        contraception = data.get('contraception')
+        mst = data.get('mst')
+        amelioration = data.get('amelioration')
+        ist = data.get('ist')
+        preservatif = data.get('preservatif')   
+        partenaires = data.get('partenaires')
+        age_premier_rapport = data.get('age_premier_rapport')
+        acces_sante = data.get('acces_sante')
+        protection = data.get('protection')
+        education = data.get('education')
+        difficultes = data.get('difficultes')
+        frequence_sante = data.get('frequence_sante')
+        prevention = data.get('prevention')
+        sexualite_precoce = data.get('sexualite_precoce')
+        facteurs = data.get('facteurs')
+        risques = data.get('risques')
         
+        if not all([age, sexe, sensibilisation, dernier_rapport, contraception, mst, amelioration, ist, preservatif, partenaires,
+                    age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante,
+                    prevention, sexualite_precoce, facteurs, risques]):
+            return "<h1>Erreur : Tous les champs sont obligatoires. Veuillez remplir le formulaire correctement.</h1><a href='/questionnaire1'>Retour au questionnaire</a>"
         
         conn = self.connexion_db()
         cursor = conn.cursor()
