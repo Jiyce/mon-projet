@@ -47,9 +47,15 @@ class MonSiteWeb(object):
                 
             }
             a {
-                display: flex;
+                display: inline-block;
                 justify-content: center;
                 margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #0c6ce9;
+                color: white;
+                text-decoration: none;
+                border-radius: 6px;
+                transition: color 0.5s ease-in-out;
             }
             
             button {
@@ -63,6 +69,7 @@ class MonSiteWeb(object):
             /*Styles pour les paragraphes */
             p {
                 text-align: center;
+                word-spacing: 6px;
                 color: #444;
                 line-height: 1.6;
                 font-size: 18px;
@@ -82,6 +89,10 @@ class MonSiteWeb(object):
         
                 <a href="/questionnaire1">
                     <button>Commencer le questionnaire 👈️ </button>
+                </a>
+                
+                <a href="/stats">
+                    <button>Voir les statistiques 📊️</button>
                 </a>
             </div>
         </body>
@@ -131,6 +142,11 @@ class MonSiteWeb(object):
             label {
                 font-weight: bold;
             }
+            
+            ul {
+                list-style: none;
+                padding: 0;
+            }
 
             /* Styles pour les champs de formulaire */
             input, select, textarea {
@@ -174,9 +190,9 @@ class MonSiteWeb(object):
         
         <h2><i>Page 1 du questionnaire</i></h2>
         
-        <ol>
+        <ul>
         <li>
-        <label>Age : </label>
+        <label>1. Age : </label>
             <select name="age" required>
                 <option value="15-19">15-19 ans</option>
                 <option value="20-25">20-25 ans</option>
@@ -186,34 +202,34 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>Sexe 🚻️: </label>
+        <label>2. Sexe 🚻️: </label>
             <select name="sexe" required>
-                <option value=" Homme">Homme♂️</option>
+                <option value="Homme">Homme♂️</option>
                 <option value="Femme">Femme♀️</option>
             </select><br><br>
         </li>
         
         <li>    
-        <label>Avez-vous déjà participez à une campagne de sensibilisation sur la santé sexuelle et reproductive ?</label>
-        <input type="radio" id="oui" name="sensibilisation" value="Oui" >Oui
-        <input type="radio" id="non" name="sensibilisation" value="Non" >Non<br><br>
+        <label>3. Avez-vous déjà participez à une campagne de sensibilisation sur la santé sexuelle et reproductive ?</label>
+        <input type="radio" id="oui1" name="sensibilisation" value="Oui" >Oui
+        <input type="radio" id="non1" name="sensibilisation" value="Non" >Non<br><br>
         </li>
         
         <li>
-        <label>Etes_vous sexuellement actif ?</label>
-        <input type="radio" id="oui" name="dernier_rapport" value="Oui" required>
-        <label for="oui">Oui</label>
-        <input type="radio" id="non" name="dernier_rapport" value="Non" required>
-        <label for="non">Non</label><br><br>
+        <label>4. Etes_vous sexuellement actif ?</label>
+        <input type="radio" id="oui2" name="dernier_rapport" value="Oui" required>
+        <label for="oui2">Oui</label>
+        <input type="radio" id="non2" name="dernier_rapport" value="Non" required>
+        <label for="non2">Non</label><br><br>
         </li>
         
         <li>
-        <label>Age du premier rapport sexuel :</label>
+        <label>5. Age du premier rapport sexuel :</label>
             <input type="number" name="age_premier_rapport" min="10" max="50" required><br><br>
         </li>
         
         <li>
-        <label>Combien de partenaires sexuels avez-vous eu au cours de votre vie ? :</label>
+        <label>6. Combien de partenaires sexuels avez-vous eu au cours de votre vie ? :</label>
             <select name="partenaires" required>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -221,9 +237,9 @@ class MonSiteWeb(object):
                 <option value="5+">5 et plus</option>
             </select><br><br>
         </li>
-
+        
         <li>
-        <label>Quelle méthode de contraception utilisez-vous ?</label>
+        <label>7. Quelle méthode de contraception utilisez-vous ?</label>
             <select name="contraception" required>
                 <option value="Aucune">Aucune</option>
                 <option value="Préservatif">Préservatif</option>
@@ -234,26 +250,27 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>Avez-vous déjà été testé pour les infections sexuellement transmissibles (ist) ?</label>
-        <input type="radio" id="oui" name="ist" value="Oui" required>
-        <label for="oui">Oui</label>
-        <input type="radio" id="non" name="ist" value="Non" required>
-        <label for="non">Non</label><br><br> 
+        <label>8. Avez-vous déjà été testé pour les infections sexuellement transmissibles (ist) ?</label>
+            <input type="radio" id="oui3" name="ist" value="Oui" required>
+            <label for="oui3">Oui</label>
+            <input type="radio" id="non3" name="ist" value="Non" required>
+            <label for="non3">Non</label><br><br> 
+        </li>
+            
+        <li>
+            <label>9. Le préservatif est-il efficace pour prévenir les grossesses et les ist ?</label>
+            <input type="radio" id="oui4" name="preservatif" value="Oui" required>
+            <label for="oui4">Oui</label><br>
+            <input type="radio" id="non4" name="preservatif" value="Non" required>
+            <label for="non4">Non</label><br><br>
         </li>
         
         <li>
-        <label>Le préservatif est-il efficace pour prévenir les grossesses et les ist ?</label>
-        <input type="radio" id="oui" name="preservatif" value="Oui" required>
-        <label for="oui">Oui</label><br>
-        <input type="radio" id="non" name="preservatif" value="Non" required>
-        <label for="non">Non</label><br><br>
-        </li>
-        
-        <li>
-        <label>Quels sont les risques associés à une activité sexuelle non protégée ?</label>
+        <label>10. Quels sont les risques associés à une activité sexuelle non protégée ?</label>
             <textarea name="risques" rows="4" cols="50" placeholder="Veuillez décrire les risques..." required></textarea><br><br>
         </li>
-        </ol>
+        
+        </ul>
         
         <input type= 'submit' value='Suivant'>
         </form>
@@ -302,6 +319,11 @@ class MonSiteWeb(object):
             label {{
                 font-weight: bold;
             }}
+            
+            ul {{
+                list-style: none;
+                padding: 0;
+            }}
 
             /* Styles pour les champs de formulaire */
             input, select, textarea {{
@@ -341,37 +363,38 @@ class MonSiteWeb(object):
         <form method="post" action="/submit">
         {hidden_inputs}
         
-        <ol>
+        <ul>
+        
         <li>
-        <label>Selon vous qui sont les plus exposées au phénomène de la sexualité précoce ? Justifiez votre réponse.</label>
+        <label>11. Selon vous qui sont les plus exposées au phénomène de la sexualité précoce ? Justifiez votre réponse.</label>
             <textarea name="sexualite_precoce" rows="4" cols="50" placeholder="Veuillez décrire..." required></textarea><br><br>
         </li>
         
         <li>
-        <label>Quels sont les facteurs qui peuvent influencer les comportements sexuels à risque chez les jeunes ?</label>
+        <label>12. Quels sont les facteurs qui peuvent influencer les comportements sexuels à risque chez les jeunes ?</label>
             <textarea name="facteurs" rows="4" cols="50" placeholder="Veuillez décrire les facteurs..." required></textarea><br><br>
         </li>
         
         <li>
-        <label>Quels sont les moyens de prévention que vous connaissez pour éviter les infections sexuellement transmissibles et les grossesses non désirées ?</label>
+        <label>13. Quels sont les moyens de prévention que vous connaissez pour éviter les infections sexuellement transmissibles et les grossesses non désirées ?</label>
             <textarea name="prevention" rows="4" cols="50" placeholder="Veuillez décrire les moyens de prévention..." required></textarea><br><br>
         </li>
         
         <li>
-        <label>Quelles sont les différentes maladies sexuellement transmissibles (mst) que vous connaissez ?</label>
+        <label>14. Quelles sont les différentes maladies sexuellement transmissibles (mst) que vous connaissez ?</label>
             <textarea name="mst" rows="4" cols="50" placeholder="Veuillez lister les maladies..." required></textarea><br><br>
         </li>
         
         <li>
-        <label>Avez-vous déjà consulter un professionnel de santé?</label>
-           <input type="radio" id="oui" name="acces_sante" value="Oui" required>
-            <label for="oui">Oui</label>
-            <input type="radio" id="non" name="acces_sante" value="Non" required>
-            <label for="non">Non</label><br><br>
+        <label>15. Avez-vous déjà consulter un professionnel de santé?</label>
+           <input type="radio" id="oui5" name="acces_sante" value="Oui" required>
+            <label for="oui5">Oui</label>
+            <input type="radio" id="non5" name="acces_sante" value="Non" required>
+            <label for="non5">Non</label><br><br>
         </li>
         
         <li>
-        <label>A quelle fréquence consultez-vous un professionnel de santé ?</label>
+        <label>16. A quelle fréquence consultez-vous un professionnel de santé ?</label>
             <select name="frequence_sante" required>
                 <option value="Jamais">Jamais</option>
                 <option value="Rarement">Rarement</option>
@@ -380,32 +403,32 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>Quelles difficultés rencontrez-vous pour accéder aux services de santé  ?</label>
+        <label>17. Quelles difficultés rencontrez-vous pour accéder aux services de santé  ?</label>
             <textarea name="difficultes" rows="4" cols="50" placeholder="Veuillez décrire les difficultés..." required></textarea><br><br>
         </li>
 
         <li>
-        <label>Utilisez-vous toujours une protection lors de vos rapports sexuels ?</label>
-            <input type="radio" id="oui" name="protection" value="Oui" required>
-            <label for="oui">Oui</label>
-            <input type="radio" id="non" name="protection" value="Non" required>
-            <label for="non">Non</label><br><br>
+        <label>18. Utilisez-vous toujours une protection lors de vos rapports sexuels ?</label>
+            <input type="radio" id="oui6" name="protection" value="Oui" required>
+            <label for="oui6">Oui</label>
+            <input type="radio" id="non6" name="protection" value="Non" required>
+            <label for="non6">Non</label><br><br>
         </li>
         
         <li>
-        <label>Pensez-vous que l'éducation sexuelle est suffisante pour les jeunes ?</label>
-            <input type="radio" id="oui" name="education" value="Oui" required>
-            <label for="oui">Oui</label>
-            <input type="radio" id="non" name="education" value="Non" required>
-            <label for="non">Non</label><br><br>
+        <label>19. Pensez-vous que l'éducation sexuelle est suffisante pour les jeunes ?</label>
+            <input type="radio" id="oui7" name="education" value="Oui" required>
+            <label for="oui7">Oui</label>
+            <input type="radio" id="non7" name="education" value="Non" required>
+            <label for="non7">Non</label><br><br>
         </li>
         
         
         <li>
-         <label>Comment amélioreriez-vous l'accès à l'éducation sexuelle et aux services de santé reproductive pour les jeunes ?</label>
+         <label>20. Comment amélioreriez-vous l'accès à l'éducation sexuelle et aux services de santé reproductive pour les jeunes ?</label>
             <textarea name="amelioration" rows="4" cols="50" placeholder="Vos suggestions..." required></textarea><br><br>
         </li>
-        </ol>
+        </ul>
             
         <input type="submit" value="Soumettre">         
         </form>
@@ -478,10 +501,60 @@ class MonSiteWeb(object):
         conn.commit()
         conn.close()
         
-        return f"""
-         <h1>Merci pour votre participation 😁️!</h1>
-         <a href="/stats">Voir les statistiques des participants📊️</a><br><br>
-         <a href="/">Retour à l'accueil🎲️</a>
+        return """
+    
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial;
+                    background: linear-gradient(to right, #0a45b3, #0d83f1);
+                    display: flex;
+                    justify-content:center;
+                    align-items: center; 
+                    margin: 0; }
+                .card {
+                    background: white;
+                    padding: 40px;
+                    border-radius: 12px;
+                    text-align: center;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                    max-width: 500px; }
+                h1 {
+                    color: #0c55df;
+                    font-size: 2.5em; 
+                }
+                .btn { 
+                   display: inline-block;
+                   margin: 10px;
+                   padding: 12px 24px; 
+                   background: #0c6ce9;
+                   color: white;
+                   text-decoration: none;
+                   border-radius: 6px;
+                   transition: 0.3s;
+                }
+                .btn:hover { 
+                    background: #00c6ff;
+                    transform: translateY(-2px);
+                }
+                .icon { 
+                   font-size: 50px; 
+                }
+                
+            </style>
+        </head>
+        <body>
+            <div class="card">
+                <div class="icon">✅</div>
+    
+    
+                <h1>Merci pour votre participation 😁️!</h1>
+                <a href="/stats">Voir les statistiques des participants📊️</a><br><br>
+                <a href="/">Retour à l'accueil🎲️</a>
+            </div>
+        </body>
+        </html>
          """
     
     @cherrypy.expose
@@ -495,12 +568,26 @@ class MonSiteWeb(object):
         
         #Repartition par sexe
         cursor.execute("""
-                       SELECT sexe,COUNT(*) 
+                       SELECT sexe,  COUNT(*) 
                        FROM reponses
                        GROUP BY sexe
                           """)
         repartition_sexe = cursor.fetchall()
         
+        questions_textuelles = ['risques', 'sexualite_precoce', 'facteurs', 'prevention', 'mst', 'amelioration', 'difficultes']
+        stats_textuelles = {}
+        
+        for colonne in questions_textuelles:
+            cursor.execute(f"""
+                           SELECT sexe, LOWER(TRIM({colonne})) AS reponse, COUNT(*) as nb
+                           FROM reponses
+                           WHERE {colonne} IS NOT NULL AND TRIM({colonne}) != ''
+                           GROUP BY sexe, reponse
+                           HAVING COUNT(*) > 1
+                           ORDER BY sexe,nb DESC
+                        """)
+            reponses = cursor.fetchall()
+            stats_textuelles[colonne] = reponses
         conn.close()
         
         html = f"""
@@ -566,8 +653,24 @@ class MonSiteWeb(object):
         for sexe, count in repartition_sexe:
                 pourcentage = (count / total) * 100 if total > 0 else 0
                 html += f"<li>{sexe} : {count} ({pourcentage:.2f}%)</li>"
+        html += "</ul>"
+                
+        html += "<h2><i>Statistiques des réponses textuelles :</i></h2>"
+        for question, reponses in stats_textuelles.items():
+            html += f"<h3>{question}</h3><ul>"
+            
+            data_par_sexe = {}
+            for sexe, reponse, nb in reponses:
+                 if sexe not in data_par_sexe:
+                    data_par_sexe[sexe] = []
+                    data_par_sexe[sexe].append((reponse, nb))
+            
+            for sexe, liste in data_par_sexe.items():
+                html += f"<strong><h4>{sexe} :</h4></strong><ul>"
+                for reponse, nb in liste:
+                    html += f"<li>{reponse} ({nb} réponses)</li>"
+                html += "</ul>"
         html += """
-            </ul>
              <a href="/">Retour à l'accueil</a>
         </div>
         </body>
