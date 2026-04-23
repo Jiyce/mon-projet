@@ -114,13 +114,17 @@ class MonSiteWeb(object):
                         <h2>Êtes-vous sûr de vouloir réinitialiser les données ?</h2>
                         <a href="/reset?confirm=yes">
                             <button style="background-color: #ff4d4d;
-                                    font-size: 18px;
+                                    font-size: 30px;
                                     padding: 10px 20px;
                                     border-radius: 6px;
                                     cursor: pointer;">Confirmer</button>
                         </a><br><br>
                         <a href="/">
-                            <button>Annuler</button>
+                            <button style="background-color: #0c6ce9;
+                                    font-size: 30px;
+                                    padding: 10px 20px;
+                                    border-radius: 6px;
+                                    cursor: pointer;">Annuler</button>
                         </a>
             </body>
             </html>
@@ -137,9 +141,21 @@ class MonSiteWeb(object):
         <html>
         <head>
         <body style="text-align: center; font-family: Arial, sans-serif; 
-                    background: linear-gradient(to right, #0a45b3, #0d83f1); padding: 50px;">
+                    background: linear-gradient(to right, #0a45b3, #0d83f1); 
+                    padding: 50px;">
                     <h1>Données réinitialisées avec succès !</h1>
                     <a href="/">Retour à l'accueil</a>
+                         a {
+                            display: inline-block;
+                            justify-content: center;
+                            margin-top: 20px;
+                            padding: 10px 20px;
+                            background-color: #0c6ce9;
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 6px;
+                            transition: color 0.5s ease-in-out;
+                    }
         </body>
         </html>
         """
