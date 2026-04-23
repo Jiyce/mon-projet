@@ -102,7 +102,7 @@ class MonSiteWeb(object):
         </body>
         </html>    
         """
-    
+    @cherrypy.expose
     def reset(self, confirm=None):
         if confirm != "yes":
             return """
