@@ -526,11 +526,6 @@ class MonSiteWeb(object):
         facteurs = data.get('facteurs')
         risques = data.get('risques')
         
-        if not all([age, sexe, sensibilisation, dernier_rapport, contraception, mst, amelioration, ist, preservatif, partenaires,
-                    age_premier_rapport, acces_sante, protection, education, difficultes, frequence_sante,
-                    prevention, sexualite_precoce, facteurs, risques]):
-            return "<h1>Erreur : Tous les champs sont obligatoires. Veuillez remplir le formulaire correctement.</h1><a href='/questionnaire1'>Retour au questionnaire</a>"
-        
         conn = self.connexion_db()
         cursor = conn.cursor()
         
