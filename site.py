@@ -285,7 +285,7 @@ class MonSiteWeb(object):
         
         <li>
         <label>5. Age du premier rapport sexuel :</label>
-            <input type="number" name="age_premier_rapport" min="10" max="50" required><br><br>
+            <input type="number" name="age_premier_rapport" min="10" max="50" ><br><br>
         </li>
         
         <li>
@@ -512,6 +512,10 @@ class MonSiteWeb(object):
         preservatif = data.get('preservatif')   
         partenaires = data.get('partenaires')
         age_premier_rapport = data.get('age_premier_rapport')
+        if not age_premier_rapport:
+            age_premier_rapport = None
+        else:
+            age_premier_rapport = int(age_premier_rapport)
         acces_sante = data.get('acces_sante')
         protection = data.get('protection')
         education = data.get('education')
