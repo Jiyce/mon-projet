@@ -109,10 +109,15 @@ class MonSiteWeb(object):
             <html>
             <head>
             <body style="text-align: center; font-family: Arial, sans-serif; 
-                        background: linear-gradient(to right, #0a45b3, #0d83f1); padding: 50px;">
+                        background: linear-gradient(to right, #0a45b3, #0d83f1);
+                        padding: 70px;  ">
                         <h2>Êtes-vous sûr de vouloir réinitialiser les données ?</h2>
                         <a href="/reset?confirm=yes">
-                            <button style="background-color: #ff4d4d;">Confirmer</button>
+                            <button style="background-color: #ff4d4d;
+                                    font-size: 18px;
+                                    padding: 10px 20px;
+                                    border-radius: 6px;
+                                    cursor: pointer;">Confirmer</button>
                         </a><br><br>
                         <a href="/">
                             <button>Annuler</button>
