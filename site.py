@@ -94,11 +94,50 @@ class MonSiteWeb(object):
                 <a href="/stats">
                     <button>Voir les statistiques 📊️</button>
                 </a>
+                
+                <a href="/reset">
+                    <button style="background-color: #ff4d4d;">Réinitialiser les données 🧹️</button>
+                </a>
             </div>
         </body>
         </html>    
         """
+    
+    def reset(self, confirm=None):
+        if confirm != "yes":
+            return """
+            <html>
+            <head>
+            <body style="text-align: center; font-family: Arial, sans-serif; 
+                        background: linear-gradient(to right, #0a45b3, #0d83f1); padding: 50px;">
+                        <h2>Êtes-vous sûr de vouloir réinitialiser les données ?</h2>
+                        <a href="/reset?confirm=yes">
+                            <button style="background-color: #ff4d4d;">Confirmer</button>
+                        </a><br><br>
+                        <a href="/">
+                            <button>Annuler</button>
+                        </a>
+            </body>
+            </html>
+            """
+
+        conn = self.connexion_db()
+        cursor = conn.cursor()
         
+        cursor.execute("DELETE FROM reponses")
+        conn.commit()
+        conn.close()
+        
+        return """
+        <html>
+        <head>
+        <body style="text-align: center; font-family: Arial, sans-serif; 
+                    background: linear-gradient(to right, #0a45b3, #0d83f1); padding: 50px;">
+                    <h1>Données réinitialisées avec succès !</h1>
+                    <a href="/">Retour à l'accueil</a>
+        </body>
+        </html>
+        """
         # Questionnaire de santé sexuelle et reproductive  
          
     @cherrypy.expose
@@ -594,24 +633,58 @@ class MonSiteWeb(object):
         <html>
         <head>
             <style>
-                body {{
-                    font-family: Arial;
+                 body {{
+                    font-family: Arial, sans-serif;
                     background: linear-gradient(to right, #4facfe, #00f2fe);
-                    text-align: center;
-                    padding: 50px;
+                    margin: 0;
+                    padding: 0;
                 }}
 
                 .container {{
+                    max-width: 800px;
+                    margin: 40px auto;
                     background: white;
                     padding: 30px;
-                    border-radius: 10px;
-                    width: 50%;
-                    margin: auto;
-                    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                    border-radius: 12px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
                 }}
 
                 h1 {{
-                    color: #10037e;
+                    text-align: center;
+                    color: #0c55df;
+                    margin-bottom: 10px;
+                }}
+
+                h2 {{
+                    color: #333;
+                    margin-top: 30px;
+                    border-bottom: 2px solid #eee;
+                    padding-bottom: 5px;
+                }}
+
+                h3 {{
+                    color: #0c6ce9;
+                    margin-top: 20px;
+                }}
+
+                h4 {{
+                    color: #555;
+                    margin-bottom: 5px;
+                }}
+
+                .card {{
+                    background: #f9f9f9;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin: 10px 0;
+                }}
+
+                .badge {{
+                    background: #0c6ce9;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                    font-size: 14px;
                 }}
 
                 ul {{
@@ -620,22 +693,32 @@ class MonSiteWeb(object):
                 }}
 
                 li {{
-                    font-size: 18px;
-                    margin: 10px 0;
+                    background: #f1f1f1;
+                    margin: 5px 0;
+                    padding: 10px;
+                    border-radius: 6px;
                 }}
 
-                a {{
-                    display: inline-block;
-                    margin-top: 20px;
-                    text-decoration: none;
-                    background: #10037e;
+                .btn {{
+                    display: block;
+                    text-align: center;
+                    margin-top: 30px;
+                    padding: 12px;
+                    background: #0c6ce9;
                     color: white;
-                    padding: 10px 20px;
-                    border-radius: 5px;
+                    text-decoration: none;
+                    border-radius: 6px;
+                    transition: 0.3s;
                 }}
 
-                a:hover {{
+                .btn:hover {{
                     background: #00c6ff;
+                }}
+
+                .highlight {{
+                    text-align: center;
+                    font-size: 18px;
+                    margin: 15px 0;
                 }}
             </style>
         </head>
@@ -643,23 +726,31 @@ class MonSiteWeb(object):
         <body>
         <div class="container">
             <h1>Statistiques des participants</h1>
-        
-            <p><strong>Total de participants : </strong> {total}</p>
             
-            <h2><i>Repartition par sexe :</i></h2>
+            <div class="highlight">
+                <p><strong>Total de participants : </strong> <span class="badge">{total}</span></p>
+            </div>
+            
+            <h2><i>👥 Répartition par sexe :</i></h2>
             <ul>
             """
             
         for sexe, count in repartition_sexe:
                 pourcentage = (count / total) * 100 if total > 0 else 0
-                html += f"<li>{sexe} : {count} ({pourcentage:.2f}%)</li>"
+                html += f"""
+                <li>
+                    <strong>{sexe} :</strong> {count} participants
+                    <span class="badge">{pourcentage:.2f}%</span>
+                </li>
+                """
         html += "</ul>"
                 
         html += "<h2><i>Statistiques des réponses textuelles :</i></h2>"
         for question, reponses in stats_textuelles.items():
-            html += f"<h3>{question}</h3><ul>"
+            html += f"<div class='card'><h3>{question}</h3><ul>"
             
             data_par_sexe = {}
+            
             for sexe, reponse, nb in reponses:
                  if sexe not in data_par_sexe:
                     data_par_sexe[sexe] = []
@@ -668,10 +759,11 @@ class MonSiteWeb(object):
             for sexe, liste in data_par_sexe.items():
                 html += f"<strong><h4>{sexe} :</h4></strong><ul>"
                 for reponse, nb in liste:
-                    html += f"<li>{reponse} ({nb} réponses)</li>"
+                    html += f"<li>{reponse}<span class='badge'>{nb} réponses</span></li>"
                 html += "</ul>"
+                html += "</div>"
         html += """
-             <a href="/">Retour à l'accueil</a>
+             <a href="/" class="btn">- Retour à l'accueil</a>
         </div>
         </body>
         </html>
