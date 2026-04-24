@@ -108,24 +108,80 @@ class MonSiteWeb(object):
             return """
             <html>
             <head>
-            <body style="text-align: center; font-family: Arial, sans-serif; 
+                <title>Confirmer la réinitialisation</title>
+                <style>
+                    body {
+                        margin: 0;
+                        font-family: Arial, sans-serif;
                         background: linear-gradient(to right, #0a45b3, #0d83f1);
-                        padding: 70px;  ">
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        color: white;
+                    }
+
+                    .container {
+                        background: rgba(0, 0, 0, 0.2);
+                        padding: 40px;
+                        border-radius: 12px;
+                        text-align: center;
+                        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+                    }
+
+                    h2 {
+                        margin-bottom: 30px;
+                        font-size: 26px;
+                    }
+
+                    .btn {
+                        font-size: 20px;
+                        padding: 12px 25px;
+                        border-radius: 8px;
+                        border: none;
+                        cursor: pointer;
+                        margin: 10px;
+                        transition: 0.3s;
+                    }
+
+                    .confirm {
+                        background-color: #ff4d4d;
+                        color: white;
+                    }
+
+                    .confirm:hover {
+                        background-color: #cc0000;
+                    }
+
+                    .cancel {
+                        background-color: #0c6ce9;
+                        color: white;
+                    }
+
+                    .cancel:hover {
+                        background-color: #084bb5;
+                    }
+
+                    a {
+                        text-decoration: none;
+                    }
+                </style>
+            </head>
+
+            <body>
+                    <div class="container">
                         <h2>Êtes-vous sûr de vouloir réinitialiser les données ?</h2>
+
                         <a href="/reset?confirm=yes">
-                            <button style="background-color: #ff4d4d;
-                                    font-size: 30px;
-                                    padding: 10px 20px;
-                                    border-radius: 6px;
-                                    cursor: pointer;">Confirmer</button>
-                        </a><br><br>
-                        <a href="/">
-                            <button style="background-color: #0c6ce9;
-                                    font-size: 30px;
-                                    padding: 10px 20px;
-                                    border-radius: 6px;
-                                    cursor: pointer;">Annuler</button>
+                            <button class="btn confirm">Confirmer</button>
                         </a>
+
+                        <br>
+
+                        <a href="/">
+                            <button class="btn cancel">Annuler</button>
+                        </a>
+                    </div>
             </body>
             </html>
             """
@@ -140,22 +196,36 @@ class MonSiteWeb(object):
         return """
         <html>
         <head>
-        <body style="text-align: center; font-family: Arial, sans-serif; 
-                    background: linear-gradient(to right, #0a45b3, #0d83f1); 
-                    padding: 50px;">
-                    <h1>Données réinitialisées avec succès !</h1>
-                    <a href="/">Retour à l'accueil</a>
-                         a {
-                            display: inline-block;
-                            justify-content: center;
-                            margin-top: 20px;
-                            padding: 10px 20px;
-                            background-color: #0c6ce9;
-                            color: white;
-                            text-decoration: none;
-                            border-radius: 6px;
-                            transition: color 0.5s ease-in-out;
-                    }
+            <title>Succès</title>
+            <style>
+                body {
+                    text-align: center;
+                    font-family: Arial, sans-serif;
+                    background: linear-gradient(to right, #0a45b3, #0d83f1);
+                    padding: 50px;
+                }
+
+                a.button {
+                    display: inline-block;
+                    margin-top: 20px;
+                    padding: 10px 20px;
+                    background-color: #0c6ce9;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 6px;
+                    transition: 0.3s;
+                }
+
+                a.button:hover {
+                    background-color: #084bb5;
+                }
+            </style>
+        </head>
+
+        <body>
+            <h1>Données réinitialisées avec succès !</h1>
+
+            <a href="/" class="button">Retour à l'accueil</a>
         </body>
         </html>
         """
@@ -284,12 +354,7 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>5. Age du premier rapport sexuel :</label>
-            <input type="number" name="age_premier_rapport" min="10" max="50" ><br><br>
-        </li>
-        
-        <li>
-        <label>6. Combien de partenaires sexuels avez-vous eu au cours de votre vie ? :</label>
+        <label>5. Combien de partenaires sexuels avez-vous eu au cours de votre vie ? :</label>
             <select name="partenaires" required>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -299,7 +364,7 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>7. Quelle méthode de contraception utilisez-vous ?</label>
+        <label>6. Quelle méthode de contraception utilisez-vous ?</label>
             <select name="contraception" required>
                 <option value="Aucune">Aucune</option>
                 <option value="Préservatif">Préservatif</option>
@@ -310,13 +375,24 @@ class MonSiteWeb(object):
         </li>
         
         <li>
-        <label>8. Avez-vous déjà été testé pour les infections sexuellement transmissibles (ist) ?</label>
+        <label>7. Avez-vous déjà été testé pour les infections sexuellement transmissibles (ist) ?</label>
             <input type="radio" id="oui3" name="ist" value="Oui" required>
             <label for="oui3">Oui</label>
             <input type="radio" id="non3" name="ist" value="Non" required>
             <label for="non3">Non</label><br><br> 
         </li>
             
+        <li>
+        <label>8.  Quel âge aviez-vous lors de votre premier rapport sexuel ?</label>
+            <select name="age_premier_rapport">
+                <option value="">--Sélectionnez(facultatif)--</option>
+                <option value="Moins de 15 ans">Moins de 15 ans</option>
+                <option value="15-19 ans">15-19 ans</option>
+                <option value="20-25 ans">20-25 ans</option>
+                <option value="25 ans et plus">25 ans et plus</option>
+            </select><br><br>
+        </li>
+         
         <li>
             <label>9. Le préservatif est-il efficace pour prévenir les grossesses et les ist ?</label>
             <input type="radio" id="oui4" name="preservatif" value="Oui" required>
@@ -514,8 +590,7 @@ class MonSiteWeb(object):
         age_premier_rapport = data.get('age_premier_rapport')
         if not age_premier_rapport:
             age_premier_rapport = None
-        else:
-            age_premier_rapport = int(age_premier_rapport)
+        
         acces_sante = data.get('acces_sante')
         protection = data.get('protection')
         education = data.get('education')
