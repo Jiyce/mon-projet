@@ -849,7 +849,8 @@ class MonSiteWeb(object):
             for sexe, reponse, nb in reponses:
                  if sexe not in data_par_sexe:
                     data_par_sexe[sexe] = []
-                    data_par_sexe[sexe].append((reponse, nb))
+                
+            data_par_sexe[sexe].append((reponse, nb))
             
             for sexe, liste in data_par_sexe.items():
                 html += f"<strong><h4>{sexe} :</h4></strong><ul>"
